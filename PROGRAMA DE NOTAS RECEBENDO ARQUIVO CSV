@@ -1,0 +1,22 @@
+import pandas as pd
+
+
+def med(mdia):
+    l=[]
+    c=((mdia).tolist())
+    for i in c:
+        if i >=7:
+            l.append("APROVADO")
+        else:
+            l.append("REPROVADO")
+    return(l)
+
+tabsala = pd.read_csv("C:\\Users\\conta\\OneDrive\\Área de Trabalho\\Notas de Sala.csv")
+
+tabsala = tabsala.drop(columns=['Unnamed: 0'])
+
+tabsala['Media'] = round(((((tabsala['Atividade 1 B1']+tabsala['Atividade 2 B1']+tabsala['Atividade 3 B1'])/3) + ((tabsala['Atividade 1 B2']+tabsala['Atividade 2 B2']+tabsala['Atividade 3 B2'])/3) + ((tabsala['Atividade 1 B3']+tabsala['Atividade 2 B3']+tabsala['Atividade 3 B3'])/3) + ((tabsala['Atividade 1 B4']+tabsala['Atividade 2 B4']+tabsala['Atividade 3 B4'])/3))/4),0)
+
+tabsala['Resultado'] = med(tabsala['Media'])
+
+tabsala[['Nome','Media','Resultado']].style.highlight_max('Resultado',color='red').highlight_min('Resultado', color='green')  
