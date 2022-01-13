@@ -1,0 +1,18 @@
+create table alunos (
+numero int not null auto_increment,
+nome varchar(30) not null,
+at1b1 decimal (3,1) not null,
+at2b1 decimal (3,1) not null,
+at3b1 decimal (3,1) not null,
+at1b2 decimal (3,1) not null,
+at2b2 decimal (3,1) not null,
+at3b2 decimal (3,1) not null,
+at1b3 decimal (3,1) not null,
+at2b3 decimal (3,1) not null,
+at3b3 decimal (3,1) not null,
+at1b4 decimal (3,1) not null,
+at2b4 decimal (3,1) not null,
+at3b4 decimal (3,1) not null,
+nfinal decimal (3,1) not null,
+primary key(numero)
+) default charset = utf8;
