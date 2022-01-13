@@ -1,0 +1,53 @@
+import math
+
+#CORES
+# ---------------------------------------------
+class bcolors:
+    APROVADO = '\033[92m' #GREEN
+    ATENÇÃO = '\033[93m' #YELLOW
+    REPROVADO = '\033[91m' #RED
+    RESET = '\033[0m' #RESET COLOR
+
+disciplina = input('Digite o Nome da Disciplina: ')
+aluno = input('Digite o Nome do Aluno: ')
+
+
+#FUNÇÃO DE VALIDAÇÃO DAS NOTAS
+# ---------------------------------------------
+def valid(lst):
+    i=0
+    while i==0:
+        try:
+            nota = int(input("Digite a nota da atividade "+str(lst[0])+" do Bimestre "+str(lst[1])+": "))
+        except:
+            print(bcolors.ATENÇÃO+"O valor inserido precisa ser um número entre 0 e 10" + bcolors.RESET)
+            continue
+        if  isinstance(nota, int) == True and nota >= 0 and nota <=10:
+            i==1
+            return(nota)
+        else:
+            print(bcolors.ATENÇÃO+"O valor inserido precisa ser um número entre 0 e 10" + bcolors.RESET)
+            
+            
+# FUNÇÃO DE CÁLCULO DA NOTA DO BIMESTRE
+# ---------------------------------------------
+def n_bim(nots):
+    return((sum(nots))/3)
+
+
+# LIST COMPREHENSION - RECEBENDO AS NOTAS E CALCULANDO A MÉDIA EM UMA ÚNICA LINHA
+# ---------------------------------------------
+b1 = [[1, 1],[2, 1],[3, 1]]
+b2 = [[1, 2],[2, 2],[3, 2]]
+b3 = [[1, 3],[2, 3],[3, 3]]
+b4 = [[1, 4],[2, 4],[3, 4]]
+
+média = (int(sum([(n_bim(x))for x in [(list((map(valid, n_ativ))))for n_ativ in [x for x in [at_bim for at_bim in [b1, b2, b3, b4]]]]])/4))
+
+#RESULTADO
+# ---------------------------------------------
+if média >=7:
+    print(bcolors.APROVADO+aluno+" foi aprovado em ",disciplina," com média final de ", média)
+
+else:
+    print(bcolors.REPROVADO+aluno+" foi reprovado em ",disciplina," com média final de ", média)
